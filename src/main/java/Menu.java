@@ -1,6 +1,7 @@
 import com.sun.org.apache.xpath.internal.operations.Bool;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -11,6 +12,7 @@ public class Menu {
 
         Scanner sn = new Scanner(System.in);
         Scanner str = new Scanner(System.in);
+
         boolean salir = false;
         int opcion; //Guardaremos la opcion del usuario
         String respuestaCompleja;   // Guardaremos la respuesta compleja del usuario
@@ -22,7 +24,12 @@ public class Menu {
             System.out.println("1. Buscar");
             System.out.println("2. Crear Usuario");
             System.out.println("3. Iniciar Sesion");
-            System.out.println("4. Salir");
+            System.out.println("4. Puntuar Pelicula");
+            System.out.println("5. Obtener Peliculas puntuadas");
+            System.out.println("6. Agregar Pelicula Vista");
+            System.out.println("7. Obtener Peliculas Vistas");
+            System.out.println("8. Obtener Paquete de Peliculas Random");
+            System.out.println("0. Salir");
 
             try {
 
@@ -78,6 +85,31 @@ public class Menu {
 
                         break;
                     case 4:
+                        System.out.println("Ingrese el nombre de la pelicula que desea votar ");
+                        String nombrePeli = str.nextLine();
+                        int nota = sn.nextInt();
+                        yo.miSuscripcion().votarPelicula(nombrePeli,nota,yo);
+                        break;
+                    case 5:
+                        yo.mostrarPeliculasPuntuadas();
+                        break;
+                    case 6:
+                        System.out.println("Ingrese el nombre de la pelicula que vio ");
+                        String nombrePeliVista = str.nextLine();
+                        yo.miSuscripcion().agregarVista(nombrePeliVista,yo);
+                        break;
+                    case 7:
+                        yo.mostrarPeliculasVistas();
+                        break;
+                    case 8:
+                        System.out.println("Ingrese la cantidad de peliculas que desea en el paquete");
+                        int cant = sn.nextInt();
+                        Paquete miPaquete = new Paquete();
+                        for(int i = 0; i < cant; i ++) {
+                            miPaquete.agregarPelicula(TopRated.obtenerPelicula());
+                        }
+                        break;
+                    case 0:
                         salir = true;
                         break;
                     default:
@@ -124,7 +156,7 @@ public class Menu {
         Scanner scn = new Scanner(System.in);
         int elegido;
         boolean noTermine = true;
-        Suscripcion devolver=Suscripcion.SIN;
+        Suscripcion devolver = new SinSuscrip();
 
         while(noTermine) {
             System.out.println("Ingrese tipo de suscripcion");
@@ -136,15 +168,15 @@ public class Menu {
                 elegido = scn.nextInt();
                 switch (elegido) {
                     case 1:
-                        devolver = Suscripcion.SIN;
+                        devolver = new SinSuscrip();
                         noTermine = false;
                         break;
                     case 2:
-                        devolver = Suscripcion.NORMAL;
+                        devolver = new Normal();
                         noTermine = false;
                         break;
                     case 3:
-                        devolver = Suscripcion.PREMIUM;
+                        devolver = new Premium();
                         noTermine = false;
                         break;
                     default:
