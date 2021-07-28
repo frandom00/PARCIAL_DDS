@@ -6,7 +6,7 @@ public class Usuario {
     String contra;
     public Suscripcion miSuscripcion;
     List<Pelicula> listaPuntuadas = new ArrayList<>();
-    List<Pelicula> listaVistas = new ArrayList<>();
+    List<AlgoPaVer> todoLoVisto = new ArrayList<>();
     int money=20;
 
     public Usuario(String usuario, String contras, Suscripcion modo) {
@@ -35,7 +35,7 @@ public class Usuario {
 
     public boolean restarCredito(int i) {
         if( money >=i ){
-            money =money-1;
+            this.money =money-1;
             return true;
         }else{
             return false;
@@ -51,12 +51,15 @@ public class Usuario {
     }
 
     public void agregarVistas(Pelicula peli) {
-        listaVistas.add(peli);
+        todoLoVisto.add(peli);
     }
 
     public boolean laVio(String nombrePeli) {
-        return listaVistas.stream().anyMatch(pelicula->pelicula.getNombre().equals(nombrePeli));
+
+        return todoLoVisto.stream().anyMatch(algoPaVer -> algoPaVer.tieneElNombre(nombrePeli));
     }
+
+
 
     public void mostrarPeliculasPuntuadas() {
         for(Pelicula p : listaPuntuadas) {
@@ -65,8 +68,8 @@ public class Usuario {
     }
 
     public void mostrarPeliculasVistas() {
-        for(Pelicula p : listaVistas) {
-            p.mostrarPeliVista();
+        for(AlgoPaVer p : todoLoVisto) {
+            p.mostrarAlgoPaVer();
         }
     }
 }

@@ -108,6 +108,10 @@ public class Menu {
                         for(int i = 0; i < cant; i ++) {
                             miPaquete.agregarPelicula(TopRated.obtenerPelicula());
                         }
+                        yo.todoLoVisto.add(miPaquete);
+                        break;
+                    case 9:
+
                         break;
                     case 0:
                         salir = true;

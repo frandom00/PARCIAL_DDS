@@ -1,7 +1,7 @@
 import java.time.LocalDate;
 import java.util.*;
 
-public class Pelicula {
+public class Pelicula extends AlgoPaVer {
     public boolean adult;
     public String backdrop_path;
     public List<Integer> genre_ids;
@@ -27,8 +27,8 @@ public class Pelicula {
     }
 
     public void darNombreYnota(String nombrePeli,int nota1) {
-        original_title = nombrePeli;
-        nota = nota1;
+        this.original_title = nombrePeli;
+        this.nota = nota1;
     }
 
     public void mostrarPelicula() {
@@ -41,12 +41,18 @@ public class Pelicula {
         return original_title;
     }
 
-    public void mostrarPeliVista() {
-        System.out.println("El nombre de la pelicula es: " + title);
+    @Override
+    public boolean tieneElNombre(String unNombre) {
+        return original_title.equals(unNombre);
+    }
+
+    @Override
+    public void mostrarAlgoPaVer() {
+        System.out.println("El nombre de la pelicula es: " + original_title);
         System.out.println("------------------------------------------------------");
     }
 
     public void darNombre(String nombrePeli) {
-        original_title = nombrePeli;
+        this.original_title = nombrePeli;
     }
 }

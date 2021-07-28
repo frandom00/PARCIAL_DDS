@@ -1,16 +1,22 @@
 import java.util.ArrayList;
 import java.util.List;
 
-public class Paquete {
-    List<Pelicula> paquete = new ArrayList<>();
+public class Paquete extends AlgoPaVer {
+    List<AlgoPaVer> paquete = new ArrayList<>();
 
     public void agregarPelicula(Pelicula unaPeli) {
         paquete.add(unaPeli);
     }
 
-    public void mostrarPaquete() {
-        for (Pelicula p : paquete) {
-            p.mostrarPeli();
+    @Override
+    public void mostrarAlgoPaVer() {
+        for (AlgoPaVer p : paquete) {
+            p.mostrarAlgoPaVer();
         }
+    }
+
+    @Override
+    public boolean tieneElNombre(String unNombre) {
+        return paquete.stream().anyMatch(algoPaVer -> algoPaVer.tieneElNombre(unNombre));
     }
 }
