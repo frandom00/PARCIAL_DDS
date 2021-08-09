@@ -103,12 +103,8 @@ public class Menu {
                         yo.mostrarPeliculasVistas();
                         break;
                     case 8:
-                        System.out.println("Ingrese la cantidad de peliculas que desea en el paquete");
-                        int cant = sn.nextInt();
                         Paquete miPaquete = new Paquete();
-                        for(int i = 0; i < cant; i ++) {
-                            miPaquete.agregarPelicula(TopRated.obtenerPelicula());
-                        }
+                        miPaquete.crearNuevo();
                         yo.todoLoVisto.add(miPaquete);
                         break;
                     case 9:
