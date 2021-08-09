@@ -1,5 +1,7 @@
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 public class Paquete extends AlgoPaVer {
     List<AlgoPaVer> paquete = new ArrayList<>();
@@ -19,7 +21,7 @@ public class Paquete extends AlgoPaVer {
         return paquete.stream().anyMatch(algoPaVer -> algoPaVer.tieneElNombre(unNombre));
     }
 
-    public void agregarAlgo() {
+    public void agregarAlgo() throws IOException {
         Scanner can = new Scanner(System.in);
         boolean noTermine = true;
         System.out.println("1. Agregar pelicula a paquete");
@@ -33,6 +35,7 @@ public class Paquete extends AlgoPaVer {
             } else if (cant == 2) {
                 Paquete unPaquete = new Paquete();
                 unPaquete.crearNuevo();
+                paquete.add(unPaquete);
                 noTermine = false;
             } else {
                 System.out.println("Te equivocaste, solo podes poner 1 o 2!");
@@ -44,7 +47,7 @@ public class Paquete extends AlgoPaVer {
 
 
 
-    public void crearNuevo() {
+    public void crearNuevo() throws IOException {
         Scanner can = new Scanner(System.in);
         System.out.println("Ingrese la cantidad de elementos que desea en el paquete");
         int cant = can.nextInt();
