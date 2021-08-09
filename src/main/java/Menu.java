@@ -15,7 +15,6 @@ public class Menu {
 
         boolean salir = false;
         int opcion; //Guardaremos la opcion del usuario
-        String respuestaCompleja;   // Guardaremos la respuesta compleja del usuario
         Suscripcion modoSuscripcion;
         Sistema miSistema= Sistema.getInstancia();
 
@@ -29,6 +28,7 @@ public class Menu {
             System.out.println("6. Agregar Pelicula Vista");
             System.out.println("7. Obtener Peliculas Vistas");
             System.out.println("8. Obtener Paquete de Peliculas Random");
+            System.out.println("9. Cambiar Suscripcion");
             System.out.println("0. Salir");
 
             try {
@@ -68,6 +68,8 @@ public class Menu {
                         modoSuscripcion = this.menuSuscripcion();
                         Usuario miUsuario = new Usuario(usuarioProvisorio, contrasenaProvisoria, modoSuscripcion);
                         miSistema.agregarUsuario(miUsuario);
+                        yo=miUsuario;
+                        sesionIniciada=true;
                         break;
                     case 3:
                         System.out.println("Has seleccionado Iniciar Sesion");
@@ -79,7 +81,6 @@ public class Menu {
                             if (miSistema.validarIngreso(usuarioProvisorio, contrasenaProvisoria)) {
                                 yo = miSistema.dameUsuario(usuarioProvisorio);
                                 sesionIniciada = true;
-                                //yo.decimeQuienSoy();
                             }
                         }
 
@@ -111,7 +112,8 @@ public class Menu {
                         yo.todoLoVisto.add(miPaquete);
                         break;
                     case 9:
-
+                        Suscripcion unaSus = this.menuSuscripcion();
+                        yo.cambiarEstado(unaSus);
                         break;
                     case 0:
                         salir = true;
@@ -151,11 +153,6 @@ public class Menu {
         }
     }
 
-    private void obtenerGeneros()  throws IOException {
-        servicioApiPelicula miApi = servicioApiPelicula.getInstancia();
-        miApi.mostrarGeneros();
-    }
-
     private Suscripcion menuSuscripcion() {
         Scanner scn = new Scanner(System.in);
         int elegido;
@@ -192,9 +189,5 @@ public class Menu {
             }
         }
         return devolver;
-
-
-
-
     }
 }

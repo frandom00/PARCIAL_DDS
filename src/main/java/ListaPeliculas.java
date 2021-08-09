@@ -5,11 +5,7 @@ public class ListaPeliculas {
     int total_pages;
 
 
-    public void mostrarPeliculas() {
-        for (Pelicula p:results) {
-            p.mostrarPeli();
-        }
-    }
+
     public int ultimaPagina() {
         return total_pages;
     }

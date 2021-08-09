@@ -18,11 +18,6 @@ public class Ruleta {
         offset = ThreadLocalRandom.current().nextInt(1, 20);
     }
 
-    private int darmePaginaRandom(int ultimaPag) {
-        return ThreadLocalRandom.current().nextInt(1, ultimaPag);
-    }
-    private int elegirOffset() {return ThreadLocalRandom.current().nextInt(1, 20);}
-
     public Pelicula obtenerPelicula() throws IOException {
         servicioApiPelicula unServ = servicioApiPelicula.getInstancia();
         int cantPags = unServ.cuantasPaginasHay();

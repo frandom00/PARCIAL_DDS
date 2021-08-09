@@ -22,14 +22,12 @@ public class Premium extends Suscripcion {
         peli.darNombreYnota(nombrePeli,nota);
         user.agregarVotadas(peli);
         if(!user.laVio(nombrePeli)){
-        user.todoLoVisto.add(peli);}
+        user.agregarVistas(peli);}
     }
     @Override
     public void agregarVista(String nombrePeli, Usuario yo) {
         Pelicula peli = new Pelicula();
         peli.darNombre(nombrePeli);
-        yo.todoLoVisto.add(peli);
+        yo.agregarVistas(peli);
     }
 }
-
-

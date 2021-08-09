@@ -63,7 +63,7 @@ public class Usuario {
 
     public void mostrarPeliculasPuntuadas() {
         for(Pelicula p : listaPuntuadas) {
-            p.mostrarPeli();
+            p.mostrarPelicula();
         }
     }
 

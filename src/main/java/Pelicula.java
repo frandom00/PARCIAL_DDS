@@ -32,14 +32,11 @@ public class Pelicula extends AlgoPaVer {
     }
 
     public void mostrarPelicula() {
-        System.out.println("El nombre de la pelicula es: " + title);
+        System.out.println("El nombre de la pelicula es: " + original_title);
         System.out.println("La puntuacion que le pusiste es: " + nota);
         System.out.println("------------------------------------------------------");
     }
 
-    public String getNombre() {
-        return original_title;
-    }
 
     @Override
     public boolean tieneElNombre(String unNombre) {
