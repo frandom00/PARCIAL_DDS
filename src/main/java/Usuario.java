@@ -15,6 +15,8 @@ public class Usuario {
         miSuscripcion = modo;
     }
 
+    public Usuario() {}
+
 
     public String getNombre() {
         return nombre;
@@ -71,5 +73,22 @@ public class Usuario {
         for(AlgoPaVer p : todoLoVisto) {
             p.mostrarAlgoPaVer();
         }
+    }
+
+    public void setNombre(String n) {
+        nombre =n;
+    }
+
+    public void setContrasena(String c) {
+        contra = c;
+    }
+
+    public void setPlata(int p) {
+        money = p;
+    }
+    public void mostrarUsuario() {
+        System.out.println("nombre " + nombre);
+        System.out.println("saldo " + money);
+        System.out.println("---------------------------");
     }
 }

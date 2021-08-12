@@ -3,6 +3,7 @@ import com.sun.org.apache.xpath.internal.operations.Bool;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.InputMismatchException;
+import java.util.List;
 import java.util.Scanner;
 
 public class Menu {
@@ -110,6 +111,13 @@ public class Menu {
                     case 9:
                         Suscripcion unaSus = this.menuSuscripcion();
                         yo.cambiarEstado(unaSus);
+                        break;
+                    case 10:
+                        List<Usuario> usuarios = null;
+                        usuarios = UsuariosDAO.selectActivas();
+                        for(Usuario u : usuarios) {
+                            u.mostrarUsuario();
+                        }
                         break;
                     case 0:
                         salir = true;
