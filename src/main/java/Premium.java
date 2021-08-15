@@ -30,4 +30,7 @@ public class Premium extends Suscripcion {
         peli.darNombre(nombrePeli);
         yo.agregarVistas(peli);
     }
+
+    @Override
+    public int getInt(){return modo;}
 }

@@ -18,7 +18,7 @@ public class Menu {
         int opcion; //Guardaremos la opcion del usuario
         Suscripcion modoSuscripcion;
         Sistema miSistema= Sistema.getInstancia();
-
+        miSistema.cargarUsuarios();
         while (!salir) {
 
             System.out.println("1. Buscar");
@@ -71,6 +71,7 @@ public class Menu {
                         miSistema.agregarUsuario(miUsuario);
                         yo=miUsuario;
                         sesionIniciada=true;
+
                         break;
                     case 3:
                         System.out.println("Has seleccionado Iniciar Sesion");
@@ -114,7 +115,7 @@ public class Menu {
                         break;
                     case 10:
                         List<Usuario> usuarios = null;
-                        usuarios = UsuariosDAO.selectActivas();
+                        usuarios = UsuariosDAO.listaDeUsuarios();
                         for(Usuario u : usuarios) {
                             u.mostrarUsuario();
                         }

@@ -18,4 +18,7 @@ public class SinSuscrip extends Suscripcion{
         return unModo;
     }
 
+    @Override
+    public int getInt(){return modo;}
+
 }

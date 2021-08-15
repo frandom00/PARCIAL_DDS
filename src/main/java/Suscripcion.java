@@ -9,4 +9,6 @@ public class Suscripcion {
 
     public void agregarVista(String nombrePeli, Usuario yo) {
     }
+
+    public int getInt(){return modo;}
 }

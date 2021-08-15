@@ -9,10 +9,18 @@ public class Usuario {
     List<AlgoPaVer> todoLoVisto = new ArrayList<>();
     int money=20;
 
+
     public Usuario(String usuario, String contras, Suscripcion modo) {
         nombre = usuario;
         contra = contras;
         miSuscripcion = modo;
+
+        UsuarioMapper oMapper = new UsuarioMapper (this.nombre, this.contra, this.dameIntSusc(),this.money);
+        oMapper.insert();
+    }
+
+    private int dameIntSusc() {
+        return miSuscripcion.getInt();
     }
 
     public Usuario() {}
@@ -32,12 +40,15 @@ public class Usuario {
     }
 
     public void cambiarEstado(Suscripcion unModo) {
+
         miSuscripcion = miSuscripcion.cambiarModo(unModo, this);
+        UsuariosDAO.cambiarDineroyModo(this);
     }
 
     public boolean restarCredito(int i) {
+
         if( money >=i ){
-            this.money =money-1;
+            this.money =money-i;
             return true;
         }else{
             return false;

@@ -60,4 +60,8 @@ public class Sistema {
         }
 
     }
+
+    public void cargarUsuarios() {
+        listaUsuarios = UsuariosDAO.listaDeUsuarios();
+    }
 }

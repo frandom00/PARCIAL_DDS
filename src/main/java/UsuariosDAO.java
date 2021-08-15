@@ -33,6 +33,59 @@ public class UsuariosDAO {
         }
     }
 
+    public static List<Usuario> listaDeUsuarios() {
+
+        try {
+
+            // generacion de query
+            String consulta = "SELECT * FROM usuarios";
+
+            // Conexión
+            UsuariosDAO.conn = newConnection();
+
+            // Ejecución
+            Statement stmt = UsuariosDAO.conn.createStatement();
+            ResultSet rs = stmt.executeQuery(consulta);
+
+            // Recorrer y usar cada línea retornada
+            List<Usuario> usuarios = new ArrayList<>();
+
+            while (rs.next()) {
+                Usuario obj = new Usuario();
+
+                // get nombre y contrasena
+                obj.setNombre(rs.getString("nombre"));
+                obj.setContrasena(rs.getString("contrasena"));
+
+                // get susc
+                //obj.setSuscripcion(rs.getInt("suscripcion"));
+
+                // get plata
+                obj.setPlata(rs.getInt("plata"));
+
+                usuarios.add(obj);
+            }
+
+            return usuarios;
+
+        } catch (SQLException ex) {
+
+            // handle any errors
+            System.out.println("Error en Select");
+            return null;
+        }
+    }
+
+    public static void cambiarDineroyModo(Usuario usuario) {
+        // buscar el usuario en la BD
+
+        // definir valores
+        int modoNuevo = usuario.miSuscripcion.getInt();
+        int dineroNuevo = usuario.money;
+
+        // cambiar los campos con update
+    }
+/*
     public static List<Usuario> selectActivas() {
 
         try {
@@ -74,7 +127,7 @@ public class UsuariosDAO {
             System.out.println("Error en Select");
             return null;
         }
-    }
+    }*/
 
 
 }

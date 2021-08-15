@@ -23,6 +23,8 @@ public class Normal extends Suscripcion {
         user.agregarVotadas(peli);
 
     }
+    @Override
+    public int getInt(){return modo;}
 
 
 }
