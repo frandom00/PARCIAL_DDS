@@ -58,7 +58,7 @@ public class UsuariosDAO {
                 obj.setContrasena(rs.getString("contrasena"));
 
                 // get susc
-                //obj.setSuscripcion(rs.getInt("suscripcion"));
+                obj.setSuscripcion(rs.getInt("id_suscricpcion"));
 
                 // get plata
                 obj.setPlata(rs.getInt("plata"));
@@ -76,14 +76,33 @@ public class UsuariosDAO {
         }
     }
 
-    public static void cambiarDineroyModo(Usuario usuario) {
-        // buscar el usuario en la BD
-
+    public static  void cambiarDineroyModo(Usuario usuario) {
         // definir valores
         int modoNuevo = usuario.miSuscripcion.getInt();
         int dineroNuevo = usuario.money;
 
         // cambiar los campos con update
+        String hola = "UPDATE `usuarios` SET `plata` = '" + dineroNuevo + "' WHERE `nombre` = '" + usuario.nombre + "';";
+        String hola2 = "UPDATE `usuarios` SET `id_suscricpcion` = '" + modoNuevo + "' WHERE `nombre` = '" + usuario.nombre + "';";
+           try {
+                UsuariosDAO.conn = newConnection();
+                // Ejecuci�n
+                PreparedStatement stmt = UsuariosDAO.conn.prepareStatement(hola, Statement.RETURN_GENERATED_KEYS);
+                // execute the preparedstatement
+                stmt.executeUpdate();
+                // obtener �ltimo id generado
+                ResultSet generatedKeys = stmt.getGeneratedKeys();
+
+
+
+            } catch (SQLException ex) {
+
+                // handle any errors
+                System.out.println("Error en Insert");
+
+            }
+
+
     }
 /*
     public static List<Usuario> selectActivas() {

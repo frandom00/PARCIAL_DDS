@@ -3,10 +3,10 @@ public class Premium extends Suscripcion {
 
     @Override
     public Suscripcion cambiarModo(Suscripcion unModo, Usuario unUsuario) {
-        if(unModo.modo == 3) {
-            System.out.println("Ya estabas en modo Sin Suscripcion... Te recomendamos un oculista");
+        if(unModo.getInt() == 3) {
+            System.out.println("Ya estabas en modo Premium... Te recomendamos un oculista");
             System.out.println("Dr. Lucas Giorgio                                  Tel. 4855-4821");
-        } else if (unModo.modo == 2) {
+        } else if (unModo.getInt() == 2) {
             if (unUsuario.restarCredito(1)){
                 return new Normal();
             }else{System.out.println("No se puede cambiar la suscripcion, no hay credito"); }

@@ -40,9 +40,8 @@ public class Usuario {
     }
 
     public void cambiarEstado(Suscripcion unModo) {
-
         miSuscripcion = miSuscripcion.cambiarModo(unModo, this);
-        UsuariosDAO.cambiarDineroyModo(this);
+        UsuarioDAO.cambiarDineroyModo(this);
     }
 
     public boolean restarCredito(int i) {
@@ -102,4 +101,12 @@ public class Usuario {
         System.out.println("saldo " + money);
         System.out.println("---------------------------");
     }
+
+    public void setSuscripcion(int s) {
+        if(s == 1) {miSuscripcion = new SinSuscrip();}
+        else if (s == 2) {miSuscripcion = new Normal();}
+        else {miSuscripcion = new Premium();}
+    }
+
+
 }

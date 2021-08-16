@@ -8,7 +8,7 @@ public class UsuarioDAO {
 
         private Connection conn;
 
-        public Connection newConnection() {
+        public static Connection newConnection() {
             Connection conn = null;
             try {
                 String connectionUrl = "jdbc:mysql://localhost:3306/pelismania";
@@ -34,15 +34,11 @@ public class UsuarioDAO {
             String consulta = "INSERT INTO `usuarios` (`id_usuario`, `nombre`, `contrasena`, `id_suscricpcion`, `plata`) VALUES (NULL, '" + nombre + "','" + contra + "','" + suscri + "','" + plata + "');";
 
             try {
-                System.out.println("1");
                 this.conn = newConnection();
-                System.out.println("2");
                 // Ejecuci�n
                 PreparedStatement stmt = this.conn.prepareStatement(consulta, Statement.RETURN_GENERATED_KEYS);
-                System.out.println("3");
                 // execute the preparedstatement
                 stmt.executeUpdate();
-                System.out.println("4");
                 // obtener �ltimo id generado
                 ResultSet generatedKeys = stmt.getGeneratedKeys();
                 if (generatedKeys.next())
@@ -60,52 +56,37 @@ public class UsuarioDAO {
 
         }
 
-        public boolean updateActivo(int idPersona) {
-            String consulta = "UPDATE persona SET activo = 0 WHERE id = " + idPersona + ";";
+    public static void cambiarDineroyModo(Usuario usuario) {
+        Connection con;
+        // definir valores
+        int modoNuevo = usuario.miSuscripcion.getInt();
+        int dineroNuevo = usuario.money;
 
-            try {
+        // cambiar los campos con update
+        String hola = "UPDATE `usuarios` SET `plata` = '" + dineroNuevo + "' WHERE `nombre` = '" + usuario.nombre + "';";
+        String hola2 = "UPDATE `usuarios` SET `id_suscricpcion` = '" + modoNuevo + "' WHERE `nombre` = '" + usuario.nombre + "';";
+        try {
+            con = newConnection();
+            // Ejecuci�n
+            PreparedStatement stmt = con.prepareStatement(hola, Statement.RETURN_GENERATED_KEYS);
+            PreparedStatement stmt2 = con.prepareStatement(hola2, Statement.RETURN_GENERATED_KEYS);
+            // execute the preparedstatement
+            stmt.executeUpdate();
+            stmt2.executeUpdate();
+            // obtener �ltimo id generado
+            ResultSet generatedKeys = stmt.getGeneratedKeys();
+            ResultSet generatedKeys2 = stmt2.getGeneratedKeys();
 
-                this.conn = newConnection();
-
-                // Ejecuci�n
-                PreparedStatement stmt = this.conn.prepareStatement(consulta);
-
-                // execute the preparedstatement
-                stmt.executeUpdate();
-                return true;
 
 
-            } catch (SQLException ex) {
+        } catch (SQLException ex) {
 
-                // handle any errors
-                System.out.println("Error en Update");
-                return false;
-            }
-
-        }
-
-        public boolean delete(int idPersona) {
-            String consulta = "DELETE FROM persona WHERE id = " + idPersona + ";";
-
-            try {
-
-                this.conn = newConnection();
-
-                // Ejecuci�n
-                PreparedStatement stmt = this.conn.prepareStatement(consulta);
-
-                // execute the preparedstatement
-                stmt.execute();
-                return true;
-
-            } catch (SQLException ex) {
-
-                // handle any errors
-                System.out.println("Error en Delete");
-                return false;
-            }
+            // handle any errors
+            System.out.println("Error en Insert");
 
         }
 
+
+    }
 
 }
