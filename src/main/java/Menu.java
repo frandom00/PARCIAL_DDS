@@ -44,7 +44,6 @@ public class Menu {
                             System.out.println("Seleccione el metodo de busqueda");
                             System.out.println("1. Top rated");
                             System.out.println("2. Por genero");
-                            System.out.println("3. DIOSITO SABE");
                             opcion = sn.nextInt();
                             this.busquedaPor(opcion);
 
